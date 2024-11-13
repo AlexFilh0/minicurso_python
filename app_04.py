@@ -49,11 +49,10 @@ def noClique_Visualizar():
     lblInscritos.config(text="Inscritos: \n" + inscritos)
 
 def noClique_Sortear():
-    sql = f"select * from pessoa"
+    sql = f"select min(pessoa.numero) min, max(pessoa.numero) max from pessoa"
     cur.execute(sql)
     d = cur.fetchall()
-    print(len(d))
-    sortear = randint(1, len(d))
+    sortear = randint(d[0][0], d[0][1])
     sql = f"select * from pessoa where numero = {sortear}"
     cur.execute(sql)
     d = cur.fetchall()
